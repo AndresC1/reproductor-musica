@@ -21,12 +21,13 @@ class EditSong : AppCompatActivity() {
         binding = ActivityEditSongBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var dataSongSelect = ListSong.songSelect
+
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(SongViewModel::class.java)
 
-        val id = intent.getIntExtra("id", 0).toInt()
         val nombre = intent.getStringExtra("nombre").toString()
         val artistas = intent.getStringExtra("artistas").toString()
-        val anio = intent.getIntExtra("anio", 2023).toString()
+        val anio = intent.getStringExtra("anio").toString()
         val genero = intent.getStringExtra("genero").toString()
         val imagen = intent.getStringExtra("imagen").toString()
         val link_Cancion = intent.getStringExtra("link_Cancion").toString()
@@ -39,26 +40,14 @@ class EditSong : AppCompatActivity() {
         binding.txtLinkSongEdit.text = Editable.Factory.getInstance().newEditable(link_Cancion)
 
         binding.btnEditInfoSong.setOnClickListener{
-            var anio: Int = 0
-            try {
-                anio =  binding.txtAnioSongEdit.text.toString().toInt()
-            }catch (ex: NumberFormatException){
-                anio = 2023
-            }
             GlobalScope.launch {
-                EditInfoSong(
-                    SongModel(
-                        id,
-                        binding.txtNameEdit.text.toString(),
-                        binding.txtLinkImageEdit.text.toString(),
-                        binding.txtLinkSongEdit.text.toString(),
-                        anio,
-                        binding.txtGenderEdit.text.toString(),
-                        binding.txtArtistEdit.text.toString(),
-                        "xx-xx-xxx",
-                        "xx-xx-xxxx"
-                    )
-                )
+                dataSongSelect.nombre = binding.txtNameEdit.text.toString()
+                dataSongSelect.imagen = binding.txtLinkImageEdit.text.toString()
+                dataSongSelect.link_Cancion = binding.txtLinkSongEdit.text.toString()
+                dataSongSelect.anio = binding.txtAnioSongEdit.text.toString()
+                dataSongSelect.genero = binding.txtGenderEdit.text.toString()
+                dataSongSelect.artistas = binding.txtArtistEdit.text.toString()
+                EditInfoSong(dataSongSelect)
             }
         }
     }

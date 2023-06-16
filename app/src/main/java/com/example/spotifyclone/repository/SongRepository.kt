@@ -1,28 +1,22 @@
 package com.example.spotifyclone.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
-import com.example.spotifyclone.room.SongDao
+import com.example.spotifyclone.FirebaseSong.SongFirebase
 import com.example.spotifyclone.room.SongModel
+import com.example.spotifyclone.FirebaseSong.SongFirebase.CreateSong
+import com.example.spotifyclone.FirebaseSong.SongFirebase.getSong
 
-class SongRepository  constructor(
-    private val SongDao: SongDao
-){
-    fun GetAllSong(): LiveData<List<SongModel>> = SongDao.getSong().asLiveData()
+class SongRepository{
+    suspend fun GetAllSongFirestone(): List<SongModel> = getSong()
 
     suspend fun SaveSong(song: SongModel){
-        SongDao.SaveSong(song)
-    }
-
-    suspend fun ClearAllSong(){
-        SongDao.DeleteAllSong()
+        CreateSong(song)
     }
 
     suspend fun UpdateSong(song: SongModel){
-        SongDao.UpdateSong(song)
+        SongFirebase.UpdateSong(song)
     }
 
     suspend fun DeleteSong(song: SongModel){
-        SongDao.DeleteSong(song)
+        SongFirebase.DeleteSong(song)
     }
 }

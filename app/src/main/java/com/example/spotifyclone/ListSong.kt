@@ -8,8 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spotifyclone.ViewModel.SongViewModel
 import com.example.spotifyclone.databinding.ActivityListSongBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.example.spotifyclone.room.SongModel
 
 class ListSong : AppCompatActivity() {
     private lateinit var binding: ActivityListSongBinding
@@ -25,16 +24,14 @@ class ListSong : AppCompatActivity() {
 
         observeEvents()
 
-        binding.btClearAllSong.setOnClickListener{
-            GlobalScope.launch {
-                ClearAllSong()
-            }
-        }
-
         binding.btnAddSong.setOnClickListener{
             val intent = Intent(this, AddSong::class.java)
             startActivity(intent)
         }
+    }
+    companion object{
+        var isEdit = false
+        lateinit var songSelect: SongModel
     }
     private fun observeEvents(){
         viewModel.listSong.observe(this, Observer { list ->
@@ -42,13 +39,9 @@ class ListSong : AppCompatActivity() {
                 adapterSong = SongAdapter(it, viewModel)
                 binding.RVlistSong.adapter = adapterSong
                 adapterSong.notifyDataSetChanged()
-        }
+            }
         })
     }
-    suspend fun ClearAllSong(){
-        viewModel.ClearAllSong()
-    }
-
     override fun onRestart() {
         super.onRestart()
     }

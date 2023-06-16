@@ -36,7 +36,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RVlistSong"
         android:layout_width="360dp"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,14 +52,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RVlistSong" />
 
-    <Button
-        android:id="@+id/btClearAllSong"
-        android:layout_width="360dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:text="Eliminar registros"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddSong" />
 </androidx.constraintlayout.widget.ConstraintLayout>
