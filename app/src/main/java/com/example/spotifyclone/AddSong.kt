@@ -8,8 +8,6 @@ import com.example.spotifyclone.databinding.ActivityAddSongBinding
 import com.example.spotifyclone.room.SongModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.NumberFormatException
-import java.time.LocalDate
 
 class AddSong : AppCompatActivity() {
     private lateinit var binding: ActivityAddSongBinding
@@ -28,22 +26,17 @@ class AddSong : AppCompatActivity() {
         }
     }
     suspend fun InsertSongNew(){
-        var anio: Int = 0
-        try {
-            anio =  binding.txtAnioSong.text.toString().toInt()
-        }catch (ex: NumberFormatException){
-            anio = 2023
-        }
         var DataInit = SongModel(
             0,
             binding.txtName.text.toString(),
             binding.txtLinkImage.text.toString(),
             binding.txtLinkSong.text.toString(),
-            anio,
+            binding.txtAnioSong.text.toString(),
             binding.txtGender.text.toString(),
             binding.txtArtist.text.toString(),
             "xx-xx-xxxx",
-            "xx-xx-xxxx"
+            "xx-xx-xxxx",
+            null
         )
         viewModel.InsertSong(DataInit)
         this.finish()
