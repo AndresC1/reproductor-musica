@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spotifyclone.ViewModel.SongViewModel
 import com.example.spotifyclone.databinding.ActivityListSongBinding
@@ -28,6 +29,8 @@ class ListSong : AppCompatActivity() {
             val intent = Intent(this, AddSong::class.java)
             startActivity(intent)
         }
+
+        binding.btnLogout.setOnClickListener{logout()}
     }
     companion object{
         var isEdit = false
