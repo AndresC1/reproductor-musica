@@ -57,6 +57,7 @@ object SongFirebase {
             }
             listSong.add(songModel!!)
         }
+        Log.i("test", querySnapshot.size().toString())
         return listSong
     }
 

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0D0C14"
-    tools:context=".MainActivity" >
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/editTextText2"
@@ -61,19 +63,22 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
     <Button
-        android:id="@+id/btnOpenWindow2"
+        android:id="@+id/btnOpenGoogle"
         android:layout_width="346dp"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        android:background="#1bcf5c"
-        android:backgroundTint="#1bcf5c"
+        android:background="#fff"
+        android:backgroundTint="#fff"
+        android:drawableStart="@drawable/googleg_standard_color_18"
+        android:paddingLeft="40dp"
+        android:paddingRight="60dp"
         android:text="Continuar con Google"
         android:textAllCaps="false"
         android:textColorHighlight="#1bcf5c"
         android:textColorLink="#1bcf5c"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:cornerRadius="2dp"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
